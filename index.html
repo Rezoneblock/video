@@ -330,63 +330,59 @@
             // Скрываем основной контент до полной загрузки
             sections.forEach(section => section.style.opacity = '0');
 
-            // Инициализируем прогресс и время старта
+            // Инициализируем прогресс и состояние загрузки
             let currentProgress = 0;
             let isVideoLoaded = false;
             let isFontLoaded = false;
             let startTime = Date.now();
+            let videoProgress = 0; // Отдельная переменная для прогресса видео
 
             // Функция обновления прогресса
             const updateProgress = (progress) => {
-                currentProgress = Math.min(progress, 100);
+                currentProgress = Math.min(Math.max(progress, currentProgress), 100); // Не даём уменьшаться
                 percentageText.textContent = `${Math.round(currentProgress)}%`;
                 const dashOffset = 283 * (1 - currentProgress / 100); // 283 - длина окружности
                 fill.style.strokeDashoffset = dashOffset;
             };
 
-            // Проверка полной загрузки всех ресурсов с минимальной задержкой
-            const checkAllLoaded = () => {
-                if (isVideoLoaded && isFontLoaded && currentProgress >= 100) {
-                    const elapsedTime = Date.now() - startTime;
-                    const remainingTime = Math.max(0, MINIMUM_PRELOADER_TIME - elapsedTime);
-
-                    setTimeout(() => {
-                        preloader.style.opacity = '0';
-                        sections.forEach(section => section.style.opacity = '1');
-                        setTimeout(() => {
-                            preloader.style.display = 'none';
-                        }, 1000); // Время анимации исчезновения
-                    }, remainingTime);
-                }
+            // Функция завершения прелоадера
+            const finishPreloader = () => {
+                preloader.style.opacity = '0';
+                sections.forEach(section => section.style.opacity = '1');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 1000); // Время анимации исчезновения
             };
 
-            // Имитация прогресса до загрузки видео
-            const simulateProgress = () => {
-                const simulation = setInterval(() => {
-                    if (currentProgress < 80 && !isVideoLoaded) {
-                        currentProgress += 1; // Быстрее в начале
-                        updateProgress(currentProgress);
-                    } else if (currentProgress < 95 && !isVideoLoaded) {
-                        currentProgress += 0.5; // Замедляем ближе к 95%
-                        updateProgress(currentProgress);
-                    } else if (!isVideoLoaded) {
-                        clearInterval(simulation); // Ждем реальной загрузки
+            // Анимация прогресса с минимальным временем 5 секунд
+            const animateProgress = () => {
+                const interval = setInterval(() => {
+                    const elapsedTime = Date.now() - startTime;
+                    const timeBasedProgress = (elapsedTime / MINIMUM_PRELOADER_TIME) * 100;
+
+                    // Учитываем прогресс видео, но не даём ему опережать время слишком сильно
+                    const adjustedProgress = Math.max(timeBasedProgress, videoProgress);
+
+                    updateProgress(adjustedProgress);
+
+                    // Если прошло 5 секунд и все ресурсы загружены
+                    if (elapsedTime >= MINIMUM_PRELOADER_TIME && isVideoLoaded && isFontLoaded && currentProgress >= 100) {
+                        clearInterval(interval);
+                        finishPreloader();
                     }
-                }, 50); // Скорость имитации
+                }, 50); // Обновление каждые 50 мс для плавности
             };
 
             // Отслеживание загрузки шрифта
             Promise.all([
-                document.fonts.load('400 1em "Fira Sans"'), // Загружаем конкретный вес шрифта
-                document.fonts.load('700 1em "Fira Sans"')  // Можно добавить другие веса, если используются
+                document.fonts.load('400 1em "Fira Sans"'),
+                document.fonts.load('700 1em "Fira Sans"')
             ]).then(() => {
                 isFontLoaded = true;
                 console.log('Шрифты загружены');
-                checkAllLoaded();
             }).catch((error) => {
                 console.error('Ошибка загрузки шрифта:', error);
                 isFontLoaded = true; // Продолжаем даже при ошибке
-                checkAllLoaded();
             });
 
             // Отслеживание реальной загрузки видео через XMLHttpRequest
@@ -397,37 +393,25 @@
 
             xhr.onprogress = (event) => {
                 if (event.lengthComputable) {
-                    const realProgress = (event.loaded / event.total) * 95; // До 95% по реальной загрузке
-                    if (realProgress > currentProgress) {
-                        currentProgress = realProgress;
-                        updateProgress(currentProgress);
-                    }
+                    videoProgress = (event.loaded / event.total) * 100; // Обновляем только прогресс видео
                 }
             };
 
             xhr.onload = () => {
                 isVideoLoaded = true;
-                const finalAnimation = setInterval(() => {
-                    if (currentProgress < 100) {
-                        currentProgress += 1; // Плавно до 100%
-                        updateProgress(currentProgress);
-                    } else {
-                        clearInterval(finalAnimation);
-                        checkAllLoaded(); // Проверяем, все ли загружено
-                    }
-                }, 50); // Скорость финальной анимации
+                videoProgress = 100; // Устанавливаем 100% при завершении
+                console.log('Видео загружено');
             };
 
             xhr.onerror = () => {
                 console.error('Ошибка загрузки видео');
                 isVideoLoaded = true;
-                updateProgress(100); // Завершаем при ошибке
-                checkAllLoaded();
+                videoProgress = 100; // Продолжаем даже при ошибке
             };
 
-            // Начинаем загрузку видео и имитацию
+            // Начинаем загрузку видео и анимацию
             xhr.send();
-            simulateProgress();
+            animateProgress();
 
             // Плавная прокрутка до видео при нажатии на кнопку
             scrollButton.addEventListener('click', () => {
