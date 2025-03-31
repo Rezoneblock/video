@@ -25,16 +25,17 @@
             align-items: center;
             flex-direction: column;
             text-align: center;
-            display: flex; 
+            display: none; /* Скрываем контент до полной загрузки */
             padding: 20px;
             box-sizing: border-box;
         }
 
         .first-screen {
             background: #f0f0f0;
-            h1 {
-                font-weight: 700;
-            }
+        }
+
+        .first-screen h1 {
+            font-weight: 700;
         }
 
         .second-screen {
@@ -324,14 +325,16 @@
             const video = document.querySelector('video');
             const scrollButton = document.querySelector('#scrollToVideo');
             const secondScreen = document.querySelector('.second-screen');
+            const MINIMUM_PRELOADER_TIME = 5000; // 5 секунд в миллисекундах
 
             // Скрываем основной контент до полной загрузки
-            sections.forEach(section => section.style.opacity = '0');
+            sections.forEach(section => section.style.display = 'none');
 
-            // Инициализируем прогресс
+            // Инициализируем прогресс и время старта
             let currentProgress = 0;
             let isVideoLoaded = false;
             let isFontLoaded = false;
+            let startTime = Date.now();
 
             // Функция обновления прогресса
             const updateProgress = (progress) => {
@@ -341,16 +344,19 @@
                 fill.style.strokeDashoffset = dashOffset;
             };
 
-            // Проверка полной загрузки всех ресурсов
+            // Проверка полной загрузки всех ресурсов с минимальной задержкой
             const checkAllLoaded = () => {
                 if (isVideoLoaded && isFontLoaded && currentProgress >= 100) {
+                    const elapsedTime = Date.now() - startTime;
+                    const remainingTime = Math.max(0, MINIMUM_PRELOADER_TIME - elapsedTime);
+
                     setTimeout(() => {
                         preloader.style.opacity = '0';
-                        sections.forEach(section => section.style.opacity = '1');
+                        sections.forEach(section => section.style.display = 'flex');
                         setTimeout(() => {
                             preloader.style.display = 'none';
-                        }, 1000);
-                    }, 500);
+                        }, 1000); // Время анимации исчезновения
+                    }, remainingTime);
                 }
             };
 
@@ -430,4 +436,4 @@
         });
     </script>
 </body>
-</html>ч
+</html>
