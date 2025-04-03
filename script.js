@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Инициализируем прогресс
     let currentProgress = 0;
     const startTime = Date.now();
-    const TOTAL_DURATION = 6000; // 6 секунд общее время загрузки
+    const TOTAL_DURATION = 600; // 6 секунд общее время загрузки
 
     // Функция обновления прогресса
     const updateProgress = (progress) => {
@@ -47,4 +47,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Запускаем анимацию загрузки
     animateLoading();
+
+    const anchors = document.querySelectorAll('a[href*="#"]');
+    for (let anchor of anchors) {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const blockID = anchor.getAttribute('href').substr(1);
+            const targetElement = document.getElementById(blockID);
+            
+            if (targetElement) {
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = targetPosition - 120; // Отнимаем 120px
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    }
 });
