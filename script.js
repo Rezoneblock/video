@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const videoIframe = document.querySelector('iframe[src*="vk.com"]'); // Ищем iframe от VK
     const secondScreen = document.querySelector('.second-screen');
     const INITIAL_DELAY = 4000; // 4 секунды холостой загрузки
-    const INITIAL_PROGRESS = 60; // До 60% за 3 секунды
+    const INITIAL_PROGRESS = 60; // До 60% за 4 секунды
 
     // Скрываем основной контент до полной загрузки
     sections.forEach(section => section.style.opacity = '0');
