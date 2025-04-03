@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Инициализируем прогресс
     let currentProgress = 0;
     const startTime = Date.now();
-    const TOTAL_DURATION = 600; // 6 секунд общее время загрузки
+    const TOTAL_DURATION = 6000; // 6 секунд общее время загрузки
 
     // Функция обновления прогресса
     const updateProgress = (progress) => {
