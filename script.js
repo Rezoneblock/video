@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const video = document.querySelector('video');
     const scrollButton = document.querySelector('#scrollToVideo');
     const secondScreen = document.querySelector('.second-screen');
-    const INITIAL_DELAY = 400; // 4 секунды холостой загрузки
+    const INITIAL_DELAY = 4000; // 4 секунды холостой загрузки
     const INITIAL_PROGRESS = 60; // До 60% за 3 секунды
 
     // Скрываем основной контент до полной загрузки
