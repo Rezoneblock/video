@@ -98,12 +98,56 @@ header .container {
     font-weight: 500;
 }
 
+.section--second h2 {
+    font-size: 32px;
+}
+
 .section--second .video {
     position: relative;
     max-width: 100%;
 }
 .section--second .video iframe {
     max-width: 100%;
+}
+
+.section--third h2 {
+    font-size: 32px;
+}
+
+.section--third ul {
+    padding: 0;
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    list-style: none;
+}
+
+.section--third ul li {
+    position: relative;
+
+    padding: 10px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: space-around;
+    height: 110px;
+
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.section--third ul li:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.section--third ul li p {
+    font-weight: 500;
+}
+
+.section--third ul li img {
+    max-width: 80px;
+    width: 100%;
 }
 
 @media screen and (max-height: 880px) {
