@@ -1,0 +1,315 @@
+/* Общие стили */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Fira Sans', sans-serif;
+    overflow-x: hidden;
+    background-image: url('./background.jpg');
+    background-repeat: no-repeat;
+}
+
+.container {
+    max-width: 390px;
+    width: 100%;
+    height: 100%;
+    padding: 0 15px;
+}
+
+header {
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 120px;
+    background-color: #fff;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .logo {
+        display: flex;
+        max-width: 134px;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        img {
+            display: block;
+            width: 134px;
+            height: 60px;
+        }
+    } 
+    nav {
+        ul {
+            display: flex;
+            padding: 0;
+            gap: 30px;
+
+            list-style: none;
+            li a{
+                color: #025EA1;
+                text-decoration: none;
+            }   
+        }
+    }
+}
+
+.section {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    display: flex;
+    padding: 20px 0;
+    box-sizing: border-box;
+}
+
+.section--first {
+    min-height: 100vh;
+    h1 span {
+        color: #025EA1;
+    }
+    p {
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 0.4px;
+    }
+    p span {
+        font-weight: 500;
+    }
+}
+
+@media screen and (max-height: 880px) {
+    .section--first {
+        padding-top: 30%;
+    }
+}
+
+/* Прелоадер */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 1s;
+    font-family: 'Fira Sans', sans-serif; /* Применяем шрифт сразу */
+}
+
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+}
+
+.loader svg {
+    width: 100%;
+    height: 100%;
+}
+
+.loader circle {
+    fill: none;
+    stroke-width: 4;
+}
+
+.loader .border {
+    stroke: #f3f3f3;
+}
+
+.loader .fill {
+    stroke: #007bff;
+    stroke-dasharray: 283; /* Длина окружности для радиуса 45 (2 * π * r) */
+    stroke-dashoffset: 283; /* Начальное значение - круг пустой */
+    transition: stroke-dashoffset 0.1s linear;
+}
+
+.percentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-family: 'Fira Sans', sans-serif; /* Применяем шрифт сразу */
+}
+
+/* Текст приветствия в прелоадере */
+.greeting {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    font-size: 28px;
+    letter-spacing: 0.4px;
+    font-weight: 400;
+    font-family: 'Fira Sans', sans-serif; /* Применяем шрифт сразу */
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    height: 320px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.greeting-left {
+    transform: translateX(-200%);
+    animation: slideInLeft 2s forwards;
+}
+
+.greeting-right {
+    transform: translateX(200%);
+    animation: slideInRight 2s forwards;
+}
+
+@keyframes slideInLeft {
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Видео */
+video {
+    width: 100%;
+    max-width: 1200px;
+    max-height: 80vh;
+}
+
+/* Медиа-запросы для адаптивности */
+
+/* @media (max-width: 767px) {
+    .loader {
+        width: 80px;
+        height: 80px;
+    }
+
+    .percentage {
+        font-size: 20px;
+    }
+
+    .greeting {
+        font-size: 18px;
+        padding: 0 10px;
+        flex-direction: column;
+        top: 30%;
+        width: 90%;
+    }
+
+    .greeting-left, .greeting-right {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .first-screen h1 {
+        font-size: 24px;
+    }
+
+    .first-screen p {
+        font-size: 14px;
+    }
+
+    .first-screen button {
+        max-width: 300px;
+        height: 50px;
+        font-size: 16px;
+    }
+
+    .first-screen button svg {
+        width: 25px;
+        height: 25px;
+    }
+
+    video {
+        max-height: 60vh;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .loader {
+        width: 90px;
+        height: 90px;
+    }
+
+    .percentage {
+        font-size: 22px;
+    }
+
+    .greeting {
+        font-size: 24px;
+        width: 80%;
+    }
+
+    .first-screen h1 {
+        font-size: 32px;
+    }
+
+    .first-screen p {
+        font-size: 16px;
+    }
+
+    .first-screen button {
+        max-width: 400px;
+        height: 55px;
+        font-size: 17px;
+    }
+
+    .first-screen button svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    video {
+        max-height: 70vh;
+    }
+}
+
+@media (min-width: 1024px) {
+    .first-screen h1 {
+        font-size: 40px;
+    }
+
+    .first-screen p {
+        font-size: 18px;
+    }
+
+    .first-screen button {
+        max-width: 450px;
+        height: 60px;
+        font-size: 18px;
+    }
+
+    .first-screen button svg {
+        width: 30px;
+        height: 30px;
+    }
+} */

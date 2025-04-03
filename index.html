@@ -7,432 +7,56 @@
     <link rel="stylesheet" href="normalize.css">
     <!-- Предварительная загрузка шрифта (будет загружаться позже) -->
     <link id="font-preload" rel="preload" href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" as="style">
-
-    <style>
-        /* Общие стили */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Fira Sans', sans-serif;
-            overflow-x: hidden;
-        }
-
-        .section {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-            display: flex;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .first-screen {
-            background: #f0f0f0;
-        }
-
-        .first-screen h1 {
-            font-weight: 700;
-        }
-
-        .second-screen {
-            background: #fff;
-        }
-
-        /* Кнопка */
-        .first-screen button {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            align-items: center;
-            margin-top: 20px;
-            width: 100%;
-            max-width: 450px;
-            height: 60px;
-            border: none;
-            border-radius: 15px;
-            background-color: #007bff;
-            color: #fff;
-            font-size: 18px;
-            transition: background-color 0.5s;
-            cursor: pointer;
-        }
-
-        .first-screen button svg {
-            width: 30px;
-            height: 30px;
-            fill: #fff;
-        }
-
-        .first-screen button:hover {
-            background-color: #2c90fa;
-        }
-
-        /* Прелоадер */
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 1s;
-            font-family: 'Fira Sans', sans-serif; /* Применяем шрифт сразу */
-        }
-
-        .loader {
-            position: relative;
-            width: 100px;
-            height: 100px;
-        }
-
-        .loader svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .loader circle {
-            fill: none;
-            stroke-width: 4;
-        }
-
-        .loader .border {
-            stroke: #f3f3f3;
-        }
-
-        .loader .fill {
-            stroke: #007bff;
-            stroke-dasharray: 283; /* Длина окружности для радиуса 45 (2 * π * r) */
-            stroke-dashoffset: 283; /* Начальное значение - круг пустой */
-            transition: stroke-dashoffset 0.1s linear;
-        }
-
-        .percentage {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 24px;
-            font-family: 'Fira Sans', sans-serif; /* Применяем шрифт сразу */
-        }
-
-        /* Текст приветствия в прелоадере */
-        .greeting {
-            position: absolute;
-            font-size: 32px;
-            font-family: 'Fira Sans', sans-serif; /* Применяем шрифт сразу */
-            color: #333;
-            display: flex;
-            justify-content: space-between;
-            width: 70%;
-            max-width: 800px;
-            padding: 0 20px;
-            box-sizing: border-box;
-        }
-
-        .greeting-left {
-            transform: translateX(-200%);
-            animation: slideInLeft 2s forwards;
-        }
-
-        .greeting-right {
-            transform: translateX(200%);
-            animation: slideInRight 2s forwards;
-        }
-
-        @keyframes slideInLeft {
-            to {
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            to {
-                transform: translateX(0);
-            }
-        }
-
-        /* Видео */
-        video {
-            width: 100%;
-            max-width: 1200px;
-            max-height: 80vh;
-        }
-
-        /* Медиа-запросы для адаптивности */
-        @media (max-width: 767px) {
-            .loader {
-                width: 80px;
-                height: 80px;
-            }
-
-            .percentage {
-                font-size: 20px;
-            }
-
-            .greeting {
-                font-size: 18px;
-                padding: 0 10px;
-                flex-direction: column;
-                top: 30%;
-                width: 90%;
-            }
-
-            .greeting-left, .greeting-right {
-                text-align: center;
-                margin: 10px 0;
-            }
-
-            .first-screen h1 {
-                font-size: 24px;
-            }
-
-            .first-screen p {
-                font-size: 14px;
-            }
-
-            .first-screen button {
-                max-width: 300px;
-                height: 50px;
-                font-size: 16px;
-            }
-
-            .first-screen button svg {
-                width: 25px;
-                height: 25px;
-            }
-
-            video {
-                max-height: 60vh;
-            }
-        }
-
-        @media (min-width: 768px) and (max-width: 1023px) {
-            .loader {
-                width: 90px;
-                height: 90px;
-            }
-
-            .percentage {
-                font-size: 22px;
-            }
-
-            .greeting {
-                font-size: 24px;
-                width: 80%;
-            }
-
-            .first-screen h1 {
-                font-size: 32px;
-            }
-
-            .first-screen p {
-                font-size: 16px;
-            }
-
-            .first-screen button {
-                max-width: 400px;
-                height: 55px;
-                font-size: 17px;
-            }
-
-            .first-screen button svg {
-                width: 28px;
-                height: 28px;
-            }
-
-            video {
-                max-height: 70vh;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .first-screen h1 {
-                font-size: 40px;
-            }
-
-            .first-screen p {
-                font-size: 18px;
-            }
-
-            .first-screen button {
-                max-width: 450px;
-                height: 60px;
-                font-size: 18px;
-            }
-
-            .first-screen button svg {
-                width: 30px;
-                height: 30px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <!-- Прелоадер -->
     <div class="preloader">
-        <div class="greeting">
-            <span class="greeting-left">какой-то текст</span>
-            <span class="greeting-right">какой-то текст</span>
-        </div>
-        <div class="loader">
-            <svg viewBox="0 0 100 100">
-                <circle class="border" cx="50" cy="50" r="45"></circle>
-                <circle class="fill" cx="50" cy="50" r="45"></circle>
-            </svg>
-            <div class="percentage">0%</div>
+        <div class="container">
+            <div class="greeting">
+                <span class="greeting-left">Упрощаем процессы</span>
+                <span class="greeting-right">Ускоряем успех</span>
+            </div>
+            <div class="loader">
+                <svg viewBox="0 0 100 100">
+                    <circle class="border" cx="50" cy="50" r="45"></circle>
+                    <circle class="fill" cx="50" cy="50" r="45"></circle>
+                </svg>
+                <div class="percentage">0%</div>
+            </div>
         </div>
     </div>
 
+
+    <header>
+        <div class="container">
+            <div class="logo"><img src="./logo.png" alt="NITI"></div>
+            <nav>
+                <ul>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Возможности</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <!-- Основной контент -->
-    <div class="section first-screen">
-        <h1>Добро пожаловать!</h1>
-        <p>Какой-то текст</p>
-        <button id="scrollToVideo">К Вашему вниманию, видео: 
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-                <path d="M17 2.5L17 21.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M7 2.5L7 21.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M2 12L7 12M22 12L17 12" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M2.5 7L7 7M21.5 7L17 7" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M21.5 17.75C21.9142 17.75 22.25 17.4142 22.25 17C22.25 16.5858 21.9142 16.25 21.5 16.25V17.75ZM17 16.25C16.5858 16.25 16.25 16.5858 16.25 17C16.25 17.4142 16.5858 17.75 17 17.75V16.25ZM7 17.75C7.41421 17.75 7.75 17.4142 7.75 17C7.75 16.5858 7.41421 16.25 7 16.25L7 17.75ZM17 17.75L21.5 17.75V16.25L17 16.25V17.75ZM2 17.75L7 17.75L7 16.25L2 16.25L2 17.75Z" fill="#1C274C"/>
-                <path d="M14 12C14 11.4722 13.4704 11.1162 12.4112 10.4043C11.3375 9.68271 10.8006 9.3219 10.4003 9.58682C10 9.85174 10 10.5678 10 12C10 13.4322 10 14.1483 10.4003 14.4132C10.8006 14.6781 11.3375 14.3173 12.4112 13.5957C13.4704 12.8838 14 12.5278 14 12Z" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C21.352 4.28094 21.7133 5.37486 21.8731 7M22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2.64799 19.7191 2.28672 18.6251 2.12687 17" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-        </button>
+    <div class="section section--first">
+        <div class="container">
+            <h1>Приглашаем окунуться в мир водоподготовки <span>вместе с нами!</span></h1>
+            <p>Качественная водоподготовка – это залог <span>эффективной</span> работы различных отраслей промышленности. Наша команда разрабатывает инновационные решения, которые помогают оптимизировать и автоматизировать процесс водоподготовки.</p>
+            <p>Мы предлагаем индивидуальные решения, адаптированные под специфические потребности наших клиентов. Используя передовые технологии, мы обеспечиваем автоматизированный контроль за всеми этапами водоподготовки.</p>
+            <p>Присоединяйтесь к нам на пути к более чистой и безопасной воде! <br /> <span>Мы готовы стать вашим надежным партнером в мире автоматизации!</span></p>
+        </div>
     </div>
 
-    <div class="section second-screen">
+    <div class="section">
         <video controls>
             <source src="prikol.mp4" type="video/mp4">
             Ваш браузер не поддерживает видео.
         </video>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const preloader = document.querySelector('.preloader');
-            const fill = document.querySelector('.fill');
-            const percentageText = document.querySelector('.percentage');
-            const sections = document.querySelectorAll('.section');
-            const video = document.querySelector('video');
-            const scrollButton = document.querySelector('#scrollToVideo');
-            const secondScreen = document.querySelector('.second-screen');
-            const INITIAL_DELAY = 4000; // 3 секунды холостой загрузки
-            const INITIAL_PROGRESS = 60; // До 60% за 3 секунды
-
-            // Скрываем основной контент до полной загрузки
-            sections.forEach(section => section.style.opacity = '0');
-
-            // Инициализируем прогресс и состояние загрузки
-            let currentProgress = 0;
-            let isVideoLoaded = false;
-            let isFontLoaded = false;
-            let startTime = Date.now();
-
-            // Функция обновления прогресса
-            const updateProgress = (progress) => {
-                currentProgress = Math.min(progress, 100);
-                percentageText.textContent = `${Math.round(currentProgress)}%`;
-                const dashOffset = 283 * (1 - currentProgress / 100); // 283 - длина окружности
-                fill.style.strokeDashoffset = dashOffset;
-            };
-
-            // Функция завершения прелоадера
-            const finishPreloader = () => {
-                preloader.style.opacity = '0';
-                sections.forEach(section => section.style.opacity = '1');
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 1000); // Время анимации исчезновения
-            };
-
-            // Холостая анимация первые 3 секунды
-            const initialAnimation = () => {
-                const interval = setInterval(() => {
-                    const elapsedTime = Date.now() - startTime;
-                    const initialProgress = (elapsedTime / INITIAL_DELAY) * INITIAL_PROGRESS;
-
-                    updateProgress(initialProgress);
-
-                    if (elapsedTime >= INITIAL_DELAY) {
-                        clearInterval(interval);
-                        updateProgress(INITIAL_PROGRESS); // Устанавливаем 60%
-                        startLoadingContent(); // Начинаем реальную загрузку
-                    }
-                }, 50); // Обновление каждые 50 мс для плавности
-            };
-
-            // Реальная загрузка контента
-            const startLoadingContent = () => {
-                // Подключаем шрифт
-                const fontLink = document.getElementById('font-preload');
-                fontLink.onload = () => fontLink.rel = 'stylesheet';
-
-                Promise.all([
-                    document.fonts.load('400 1em "Fira Sans"'),
-                    document.fonts.load('700 1em "Fira Sans"')
-                ]).then(() => {
-                    isFontLoaded = true;
-                    console.log('Шрифты загружены');
-                    checkCompletion();
-                }).catch((error) => {
-                    console.error('Ошибка загрузки шрифта:', error);
-                    isFontLoaded = true; // Продолжаем даже при ошибке
-                    checkCompletion();
-                });
-
-                // Загрузка видео
-                const videoUrl = document.querySelector('video source').src;
-                const xhr = new XMLHttpRequest();
-                xhr.open('GET', videoUrl, true);
-                xhr.responseType = 'blob';
-
-                xhr.onprogress = (event) => {
-                    if (event.lengthComputable) {
-                        const videoProgress = (event.loaded / event.total) * (100 - INITIAL_PROGRESS);
-                        updateProgress(INITIAL_PROGRESS + videoProgress); // От 60% до 100%
-                    }
-                };
-
-                xhr.onload = () => {
-                    isVideoLoaded = true;
-                    updateProgress(100); // Устанавливаем 100% при завершении
-                    console.log('Видео загружено');
-                    checkCompletion();
-                };
-
-                xhr.onerror = () => {
-                    console.error('Ошибка загрузки видео');
-                    isVideoLoaded = true;
-                    updateProgress(100); // Продолжаем даже при ошибке
-                    checkCompletion();
-                };
-
-                xhr.send();
-            };
-
-            // Проверка завершения загрузки
-            const checkCompletion = () => {
-                if (isVideoLoaded && isFontLoaded) {
-                    finishPreloader();
-                }
-            };
-
-            // Запускаем холостую анимацию
-            initialAnimation();
-
-            // Плавная прокрутка до видео при нажатии на кнопку
-            scrollButton.addEventListener('click', () => {
-                secondScreen.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-    </script>
+    <script src="./script.js"></script>
 </body>
 </html>
