@@ -98,9 +98,23 @@ header .container {
     font-weight: 500;
 }
 
+.section--second .video {
+    position: relative;
+    max-width: 100%;
+}
+.section--second .video iframe {
+    max-width: 100%;
+}
+
 @media screen and (max-height: 880px) {
     .section--first {
         padding-top: 30%;
+    }
+}
+
+@media screen and (max-height: 780px) {
+    .section--first {
+        padding-top: 35%;
     }
 }
 

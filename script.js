@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const fill = document.querySelector('.fill');
     const percentageText = document.querySelector('.percentage');
     const sections = document.querySelectorAll('.section');
-    const video = document.querySelector('video');
+    const videoIframe = document.querySelector('iframe[src*="vk.com"]'); // Ищем iframe от VK
     const scrollButton = document.querySelector('#scrollToVideo');
     const secondScreen = document.querySelector('.second-screen');
-    const INITIAL_DELAY = 4000; // 4 секунды холостой загрузки
+    const INITIAL_DELAY = 400; // 4 секунды холостой загрузки
     const INITIAL_PROGRESS = 60; // До 60% за 3 секунды
 
     // Скрываем основной контент до полной загрузки
@@ -70,34 +70,38 @@ document.addEventListener('DOMContentLoaded', () => {
             checkCompletion();
         });
 
-        // Загрузка видео
-        const videoUrl = document.querySelector('video source').src;
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', videoUrl, true);
-        xhr.responseType = 'blob';
-
-        xhr.onprogress = (event) => {
-            if (event.lengthComputable) {
-                const videoProgress = (event.loaded / event.total) * (100 - INITIAL_PROGRESS);
-                updateProgress(INITIAL_PROGRESS + videoProgress); // От 60% до 100%
-            }
-        };
-
-        xhr.onload = () => {
+        // Ожидание загрузки iframe с видео
+        if (videoIframe) {
+            videoIframe.addEventListener('load', () => {
+                isVideoLoaded = true;
+                updateProgress(100);
+                console.log('Iframe с видео загружен');
+                checkCompletion();
+            });
+            
+            // На случай ошибки загрузки iframe
+            videoIframe.addEventListener('error', () => {
+                console.error('Ошибка загрузки iframe с видео');
+                isVideoLoaded = true;
+                updateProgress(100);
+                checkCompletion();
+            });
+            
+            // Имитация прогресса загрузки (так как мы не можем отслеживать прогресс загрузки iframe)
+            const progressInterval = setInterval(() => {
+                if (currentProgress < 90) {
+                    updateProgress(currentProgress + 5);
+                } else {
+                    clearInterval(progressInterval);
+                }
+            }, 300);
+        } else {
+            // Если iframe не найден, продолжаем без него
+            console.warn('Iframe с видео не найден');
             isVideoLoaded = true;
-            updateProgress(100); // Устанавливаем 100% при завершении
-            console.log('Видео загружено');
+            updateProgress(100);
             checkCompletion();
-        };
-
-        xhr.onerror = () => {
-            console.error('Ошибка загрузки видео');
-            isVideoLoaded = true;
-            updateProgress(100); // Продолжаем даже при ошибке
-            checkCompletion();
-        };
-
-        xhr.send();
+        }
     };
 
     // Проверка завершения загрузки
