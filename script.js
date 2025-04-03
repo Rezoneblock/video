@@ -4,9 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const percentageText = document.querySelector('.percentage');
     const sections = document.querySelectorAll('.section');
     const videoIframe = document.querySelector('iframe[src*="vk.com"]'); // Ищем iframe от VK
-    const scrollButton = document.querySelector('#scrollToVideo');
     const secondScreen = document.querySelector('.second-screen');
-    const INITIAL_DELAY = 400; // 4 секунды холостой загрузки
+    const INITIAL_DELAY = 4000; // 4 секунды холостой загрузки
     const INITIAL_PROGRESS = 60; // До 60% за 3 секунды
 
     // Скрываем основной контент до полной загрузки
@@ -62,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.fonts.load('700 1em "Fira Sans"')
         ]).then(() => {
             isFontLoaded = true;
-            console.log('Шрифты загружены');
+            // console.log('Шрифты загружены');
             checkCompletion();
         }).catch((error) => {
             console.error('Ошибка загрузки шрифта:', error);
@@ -75,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
             videoIframe.addEventListener('load', () => {
                 isVideoLoaded = true;
                 updateProgress(100);
-                console.log('Iframe с видео загружен');
+                // console.log('Iframe с видео загружен');
                 checkCompletion();
             });
             
@@ -113,9 +112,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Запускаем холостую анимацию
     initialAnimation();
-
-    // Плавная прокрутка до видео при нажатии на кнопку
-    scrollButton.addEventListener('click', () => {
-        secondScreen.scrollIntoView({ behavior: 'smooth' });
-    });
 });

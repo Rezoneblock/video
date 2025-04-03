@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сайтецкий простой</title>
+    <title>НИТИ для воды</title>
     <link rel="stylesheet" href="normalize.css">
     <link id="font-preload" rel="preload" href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" as="style">
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="animate.css">
 </head>
 <body>
     <!-- Прелоадер -->
@@ -60,27 +61,27 @@
         <div class="container">
             <h2>Возможности</h2>
             <ul>
-                <li>
+                <li class="wow slideInLeft">
                     <img src="./ikonki1.png">
                     <p>Проектирование и разработка конструкторской документации</p>
                 </li>
-                <li>
+                <li class="wow slideInRight">
                     <img src="./ikonki2.png">
                     <p>Разработка программного обеспечения и алгоритмов автоматизации</p>
                 </li>
-                <li>
+                <li class="wow slideInLeft">
                     <img src="./ikonki3.png">
                     <p>Изготовление</p>
                 </li>
-                <li>
+                <li class="wow slideInRight">
                     <img src="./ikonki4.png">
                     <p>Проведение испытаний</p>
                 </li>
-                <li>
+                <li class="wow slideInLeft">
                     <img src="./ikonki5.png">
                     <p>Монтаж и пусконаладочные работы</p>
                 </li>
-                <li>
+                <li class="wow slideInRight">
                     <img src="./ikonki6.png">
                     <p>Техническое обслуживание</p>
                 </li>
@@ -89,5 +90,9 @@
     </div>
 
     <script src="./script.js"></script>
+    <script src="wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
 </body>
 </html>
