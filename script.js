@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.fonts.load('700 1em "Fira Sans"')
         ]).then(() => {
             isFontLoaded = true;
-            // console.log('Шрифты загружены');
+            console.log('Шрифты загружены');
             checkCompletion();
         }).catch((error) => {
             console.error('Ошибка загрузки шрифта:', error);
