@@ -24,13 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const finishPreloader = () => {
         preloader.style.opacity = '0';
         sections.forEach(section => section.style.display = 'flex');
-        new WOW({
-            animateClass: 'animated',
-            offset: 100, // Задержка перед анимацией при скролле
-            mobile: true,
-          }).init();
         setTimeout(() => {
+            const wow = new WOW();
+            wow.init();
             preloader.style.display = 'none';
+            document.querySelectorAll('.animate-now').forEach(el => {
+                el.style.visibility = 'visible';
+                wow.show(el);
+            });
         }, 1000); // Время анимации исчезновения
     };
 
