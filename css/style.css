@@ -4,6 +4,13 @@
     visibility: hidden;
  }
 
+ .animate-now {
+    visibility: visible !important;
+    animation-name: fadeInRight; /* Та же анимация, что и в WOW.js */
+    animation-duration: 1s;
+    animation-fill-mode: both;
+  }
+
 * {
     box-sizing: border-box;
 }
@@ -128,7 +135,7 @@ color: #025EA1 !important;
 animation: animate 4s ease-in-out infinite;
 }
 
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 388px) {
     .title, .effect {
         font-size: 26px !important;
         line-height: 25px;
