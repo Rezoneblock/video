@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Инициализируем прогресс
     let currentProgress = 0;
     const startTime = Date.now();
-    const TOTAL_DURATION = 6000; // 6 секунд общее время загрузки
+    const TOTAL_DURATION = 600; // 6 секунд общее время загрузки
 
     // Функция обновления прогресса
     const updateProgress = (progress) => {
@@ -24,7 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const finishPreloader = () => {
         preloader.style.opacity = '0';
         sections.forEach(section => section.style.display = 'flex');
-        new WOW().init();
+        new WOW({
+            animateClass: 'animated',
+            offset: 100, // Задержка перед анимацией при скролле
+            mobile: true,
+          }).init();
         setTimeout(() => {
             preloader.style.display = 'none';
         }, 1000); // Время анимации исчезновения

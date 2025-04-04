@@ -4,12 +4,7 @@
     visibility: hidden;
  }
 
- .animate-now {
-    visibility: visible !important;
-    animation-name: fadeInDown; /* Та же анимация, что и в WOW.js */
-    animation-duration: 1s;
-    animation-fill-mode: both;
-  }
+
 
 * {
     box-sizing: border-box;
