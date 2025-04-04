@@ -6,7 +6,7 @@
 
  .animate-now {
     visibility: visible !important;
-    animation-name: fadeInRight; /* Та же анимация, что и в WOW.js */
+    animation-name: fadeInDown; /* Та же анимация, что и в WOW.js */
     animation-duration: 1s;
     animation-fill-mode: both;
   }
