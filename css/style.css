@@ -197,6 +197,10 @@ animation: animate 4s ease-in-out infinite;
     font-size: 32px;
 }
 
+.section--third ul li:nth-child(3) {
+    padding: 0 50px;
+}
+
 .section--third ul {
     padding: 0;
     display: flex;
@@ -247,7 +251,7 @@ animation: animate 4s ease-in-out infinite;
 
 @media screen and (min-width: 920px) {
     .container {
-        max-width: 750px;
+        max-width: 1200px;
     }
     .section {
         justify-content: flex-start;
@@ -256,7 +260,17 @@ animation: animate 4s ease-in-out infinite;
     .section--first {
         padding-top: 15%;
     }
+
+    .section--first p {
+        font-size: 25px;
+    }
+
+    .title {
+        font-size: 45px;
+    }
+
     .title .effect {
+        font-size: 45px;
         transform: translate(-50%, -50%);
     }
 
@@ -270,10 +284,20 @@ animation: animate 4s ease-in-out infinite;
         width: 45%;
     }
 
+    .section--third ul li:nth-child(3) {
+        padding: 10px !important;
+    }
+
     footer ul {
         margin-top: 50px !important;
         flex-direction: row !important; 
         justify-content: space-between !important;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .section--first {
+        padding-top: 10%;
     }
 }
 
