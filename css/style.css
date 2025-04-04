@@ -106,8 +106,11 @@ header .container {
   }
 
 .title .effect {
-    top: 77px;
-    left: 18px;
+    /* top: 77px; */
+    /* left: 18px; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -5%);
     font-size: 35px;
     position: absolute;
     color: #fff;
@@ -123,6 +126,13 @@ color: transparent !important;
 .effect--2 {
 color: #025EA1 !important;
 animation: animate 4s ease-in-out infinite;
+}
+
+@media screen and (max-width: 390px) {
+    .title, .effect {
+        font-size: 26px !important;
+        line-height: 25px;
+    }
 }
 
 @keyframes animate {
