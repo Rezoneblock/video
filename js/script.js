@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('.section');
     
     // Скрываем основной контент до полной загрузки
-    sections.forEach(section => section.style.opacity = '0');
+    sections.forEach(section => section.style.display = 'none');
 
     // Инициализируем прогресс
     let currentProgress = 0;
@@ -23,7 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Функция завершения прелоадера
     const finishPreloader = () => {
         preloader.style.opacity = '0';
-        sections.forEach(section => section.style.opacity = '1');
+        sections.forEach(section => section.style.display = 'flex');
+        new WOW().init();
         setTimeout(() => {
             preloader.style.display = 'none';
         }, 1000); // Время анимации исчезновения

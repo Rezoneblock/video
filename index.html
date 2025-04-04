@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>НИТИ для воды</title>
-    <link rel="stylesheet" href="normalize.css">
-    <link id="font-preload" rel="preload" href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" as="style">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="animate.css">
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/animate.css">
 </head>
 <body>
     <!-- Прелоадер -->
@@ -30,7 +29,7 @@
 
     <header>
         <div class="container">
-            <div class="logo"><img src="./logo.png" alt="NITI"></div>
+            <div class="logo"><img src="./images/logo.png" alt="NITI"></div>
             <nav>
                 <ul>
                     <li><a href="#about">О нас</a></li>
@@ -43,10 +42,11 @@
     <!-- Основной контент -->
     <div class="section section--first">
         <div class="container">
-            <h1>Приглашаем окунуться в мир водоподготовки <span>вместе с нами!</span></h1>
-            <p>Качественная водоподготовка – это залог <span>эффективной</span> работы различных отраслей промышленности. Наша команда разрабатывает инновационные решения, которые помогают оптимизировать и автоматизировать процесс водоподготовки.</p>
-            <p>Мы предлагаем индивидуальные решения, адаптированные под специфические потребности наших клиентов. Используя передовые технологии, мы обеспечиваем автоматизированный контроль за всеми этапами водоподготовки.</p>
-            <p>Присоединяйтесь к нам на пути к более чистой и безопасной воде! <br /> <span>Мы готовы стать вашим надежным партнером в мире автоматизации!</span></p>
+            <h2 class="title">Приглашаем окунуться в мир <br /> <br /> <span class="effect effect--1">водоподготовки</span><span class="effect effect--2">водоподготовки</span> вместе с нами!</h2>
+            <p class="wow fadeInDown" data-wow-delay="1s">Качественная <span>водоподготовка</span> – это залог <span>эффективной</span> работы различных отраслей промышленности!</p>
+            <p class="wow fadeInDown" data-wow-delay="3s">Наша команда разрабатывает инновационные решения, которые помогают <span>оптимизировать</span> и <span>автоматизировать</span> процессы водоподготовки.</p>
+            <p class="wow fadeInDown" data-wow-delay="5s">Мы предлагаем <span>индивидуальные</span> решения, адаптированные под специфические потребности наших клиентов. Используя передовые технологии, мы обеспечиваем автоматизированный контроль на всех этапах водоподготовки.</p>
+            <p class="wow fadeInDown" data-wow-delay="9s"><span class="wow pulse" data-wow-delay="10s">Мы готовы стать вашим надежным партнером в мире автоматизации!</span></p>
         </div>
     </div>
 
@@ -62,27 +62,27 @@
             <h2>Возможности</h2>
             <ul>
                 <li class="wow bounceInLeft">
-                    <img src="./ikonki1.png">
+                    <img src="./images/ikonki1.png">
                     <p>Проектирование и разработка конструкторской документации</p>
                 </li>
                 <li class="wow bounceInRight">
-                    <img src="./ikonki2.png">
+                    <img src="./images/ikonki2.png">
                     <p>Разработка программного обеспечения и алгоритмов автоматизации</p>
                 </li>
                 <li class="wow bounceInLeft">
-                    <img src="./ikonki3.png">
+                    <img src="./images/ikonki3.png">
                     <p>Изготовление</p>
                 </li>
                 <li class="wow bounceInRight">
-                    <img src="./ikonki4.png">
+                    <img src="./images/ikonki4.png">
                     <p>Проведение испытаний</p>
                 </li>
                 <li class="wow bounceInLeft">
-                    <img src="./ikonki5.png">
+                    <img src="./images/ikonki5.png">
                     <p>Монтаж и пусконаладочные работы</p>
                 </li>
                 <li class="wow bounceInRight">
-                    <img src="./ikonki6.png">
+                    <img src="./images/ikonki6.png">
                     <p>Техническое обслуживание</p>
                 </li>
             </ul>
@@ -100,10 +100,7 @@
         </div>
     </footer>
 
-    <script src="./script.js"></script>
-    <script src="wow.min.js"></script>
-    <script>
-        new WOW().init();
-    </script>
+    <script src="./js/script.js"></script>
+    <script src="./js/wow.min.js"></script>
 </body>
 </html>
