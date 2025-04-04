@@ -249,6 +249,27 @@ animation: animate 4s ease-in-out infinite;
     .container {
         max-width: 750px;
     }
+    .section {
+        justify-content: flex-start;
+    }
+
+    .section--first {
+        padding-top: 15%;
+    }
+    .title .effect {
+        transform: translate(-50%, -50%);
+    }
+
+    .section--third ul {
+        flex-direction: row-reverse;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+    .section--third ul li {
+        width: 45%;
+    }
+
     footer ul {
         margin-top: 50px !important;
         flex-direction: row !important; 
@@ -388,112 +409,3 @@ footer ul li a {
         transform: translateX(0);
     }
 }
-
-/* Медиа-запросы для адаптивности */
-
-/* @media (max-width: 767px) {
-    .loader {
-        width: 80px;
-        height: 80px;
-    }
-
-    .percentage {
-        font-size: 20px;
-    }
-
-    .greeting {
-        font-size: 18px;
-        padding: 0 10px;
-        flex-direction: column;
-        top: 30%;
-        width: 90%;
-    }
-
-    .greeting-left, .greeting-right {
-        text-align: center;
-        margin: 10px 0;
-    }
-
-    .first-screen h1 {
-        font-size: 24px;
-    }
-
-    .first-screen p {
-        font-size: 14px;
-    }
-
-    .first-screen button {
-        max-width: 300px;
-        height: 50px;
-        font-size: 16px;
-    }
-
-    .first-screen button svg {
-        width: 25px;
-        height: 25px;
-    }
-
-    video {
-        max-height: 60vh;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-    .loader {
-        width: 90px;
-        height: 90px;
-    }
-
-    .percentage {
-        font-size: 22px;
-    }
-
-    .greeting {
-        font-size: 24px;
-        width: 80%;
-    }
-
-    .first-screen h1 {
-        font-size: 32px;
-    }
-
-    .first-screen p {
-        font-size: 16px;
-    }
-
-    .first-screen button {
-        max-width: 400px;
-        height: 55px;
-        font-size: 17px;
-    }
-
-    .first-screen button svg {
-        width: 28px;
-        height: 28px;
-    }
-
-    video {
-        max-height: 70vh;
-    }
-}
-
-@media (min-width: 1024px) {
-    .first-screen h1 {
-        font-size: 40px;
-    }
-
-    .first-screen p {
-        font-size: 18px;
-    }
-
-    .first-screen button {
-        max-width: 450px;
-        height: 60px;
-        font-size: 18px;
-    }
-
-    .first-screen button svg {
-        width: 30px;
-        height: 30px;
-    }
-} */
